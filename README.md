@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Genies Landing Page
 
-## Getting Started
+A modern, responsive landing page for GenieCareerHub with integrated AI-powered CareerMate chatbot.
 
-First, run the development server:
+## Features
 
+- 🎯 Professional landing page design
+- 🤖 AI-powered CareerMate chatbot assistant
+- 👨‍💼 Specialized guidance for Job Seekers
+- 🏢 Tailored assistance for Recruiters
+- 📱 Fully responsive design
+- ⚡ Built with Next.js 15 and React 19
+
+## CareerMate AI Chatbot
+
+CareerMate is an intelligent career assistant that provides personalized guidance for both job seekers and recruiters using OpenAI's GPT-4.
+
+### For Job Seekers:
+- Job search strategies and techniques
+- Resume and LinkedIn optimization
+- Interview preparation tips
+- Career development guidance
+- Skill development recommendations
+- Networking strategies
+
+### For Recruiters:
+- Candidate sourcing strategies
+- Job description optimization
+- Interview process improvement
+- Recruitment best practices
+- Employer branding guidance
+
+## Setup Instructions
+
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd genies_landing_page
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 3. Configure OpenAI API (Required for CareerMate)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Create a `.env.local` file in the root directory
+2. Add your OpenAI API key:
+```env
+OPENAI_API_KEY=your_openai_api_key_here
+```
 
-## Learn More
+3. Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Run the development server
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment Variables
 
-## Deploy on Vercel
+Create a `.env.local` file with the following variables:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```env
+# OpenAI API Configuration
+OPENAI_API_KEY=your_openai_api_key_here
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Tech Stack
+
+- **Framework**: Next.js 15
+- **Frontend**: React 19
+- **Styling**: Tailwind CSS 4
+- **Animations**: Framer Motion
+- **AI Integration**: OpenAI GPT-4
+- **Icons**: Lucide React
+- **Carousel**: Swiper.js
+
+## Project Structure
+
+```
+genies_landing_page/
+├── app/
+│   ├── api/chat/          # OpenAI API integration
+│   ├── globals.css        # Global styles
+│   ├── layout.js          # Root layout
+│   └── page.js            # Main landing page
+├── components/
+│   ├── CareerMate.jsx     # AI chatbot component
+│   ├── Footer.jsx         # Footer component
+│   ├── Navbar.jsx         # Navigation component
+│   └── Toast.jsx          # Toast notifications
+├── public/                # Static assets
+└── README.md
+```
+
+## Features Breakdown
+
+### Landing Page Sections
+- Hero section with compelling messaging
+- About GenieCareerHub services
+- Service showcase with interactive cards
+- Client testimonials with image carousel
+- Specialized sections for job seekers and recruiters
+- Statistics and achievements
+- Contact form with validation
+
+### CareerMate AI Assistant
+- Floating chat interface
+- Context-aware conversations
+- User type detection (Job Seeker vs Recruiter)
+- Specialized question prompts
+- Conversation history tracking
+- Fallback responses for offline scenarios
+- Professional typing indicators and animations
+
+## Deployment
+
+The application can be deployed on platforms like Vercel, Netlify, or any hosting service that supports Next.js.
+
+Remember to set the `OPENAI_API_KEY` environment variable in your production environment.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+This project is proprietary to GenieCareerHub.

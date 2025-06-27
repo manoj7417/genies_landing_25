@@ -2,6 +2,7 @@
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import Toast from '@/components/Toast';
+import CareerMate from '@/components/CareerMate';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
@@ -187,8 +188,8 @@ export default function Home() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.8, delay: 0.4 }}
                                 >
-                                    <Link href="https://www.geniescareerhub.com/career-coaching" className="bg-blue-950 hover:bg-blue-900 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                                        GET FREE SESSION
+                                    <Link href="https://www.geniescareerhub.com/contact-us" className="bg-blue-950 hover:bg-blue-900 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                                        GET 15 MINUTES FREE SESSION
                                     </Link>
                                 </motion.div>
 
@@ -1263,6 +1264,7 @@ export default function Home() {
                     </div>
                 </section>
 
+                <CareerMate />
                 <Footer />
             </div>
         </>
