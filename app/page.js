@@ -73,7 +73,7 @@ export default function Home() {
     const [showContactToast, setShowContactToast] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+    // const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     // Animated counters
     const professionalsPlaced = useAnimatedCounter(50, 2000, isStatsInView);
