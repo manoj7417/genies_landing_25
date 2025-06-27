@@ -35,6 +35,7 @@ import {
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Animated Counter Hook
 const useAnimatedCounter = (end, duration = 2000, shouldStart = false) => {
@@ -390,10 +391,12 @@ export default function Home() {
                         <div className="grid lg:grid-cols-2 gap-6 mb-6">
                             {/* Online Career Coaching */}
                             <div className="relative group overflow-hidden rounded-2xl h-96 cursor-pointer transform transition-all duration-300 hover:scale-105">
-                                <img
+                                <Image
                                     src="/Program1.jpg"
                                     alt="Online Career Coaching"
                                     className="w-full h-full object-cover"
+                                    width={500}
+                                    height={500}
                                 />
                                 <div className="absolute inset-0 flex flex-col justify-center p-10 text-white">
                                     <div className="mb-4">
@@ -410,10 +413,12 @@ export default function Home() {
 
                             {/* One-to-One Sessions */}
                             <div className="relative group overflow-hidden rounded-2xl h-96 cursor-pointer transform transition-all duration-300 hover:scale-105">
-                                <img
+                                <Image
                                     src="/Program2.jpg"
                                     alt="Personal Sessions"
                                     className="w-full h-full object-cover"
+                                    width={500}
+                                    height={500}
                                 />
                                 <div className="absolute inset-0 flex flex-col justify-center p-10 text-white">
                                     <div className="mb-4">
@@ -431,10 +436,12 @@ export default function Home() {
 
                         {/* Public Programs - Full Width */}
                         <div className="relative group overflow-hidden rounded-2xl h-96 cursor-pointer transform transition-all duration-300 hover:scale-105">
-                            <img
+                            <Image
                                 src="/Program3.jpg"
                                 alt="Public Programs"
                                 className="w-full h-full object-cover"
+                                width={500}
+                                height={500}
                             />
                             <div className="absolute inset-0 flex flex-col justify-center p-10 text-white">
                                 <div className="mb-4">
