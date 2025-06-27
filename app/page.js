@@ -171,7 +171,7 @@ export default function Home() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.8 }}
                                 >
-                                    "SUCCESS DOESN'T COME TO YOU, YOU GO TO IT"
+                                    &quot;SUCCESS DOESN&apos;T COME TO YOU, YOU GO TO IT&quot;
                                 </motion.h1>
                                 <motion.p
                                     className="text-lg md:text-xl text-gray-700 leading-relaxed mb-12 max-w-lg"
@@ -179,7 +179,7 @@ export default function Home() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.8, delay: 0.2 }}
                                 >
-                                    If you are not willing to risk the usual, you will have to settle for the ordinary. I'm here to help and share my story.
+                                    If you are not willing to risk the usual, you will have to settle for the ordinary. I am here to help and share my story.
                                 </motion.p>
                                 <motion.div
                                     className="mb-12"
@@ -899,7 +899,7 @@ export default function Home() {
                                 What Our Clients Say About Us
                             </h2>
                             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                                Don't just take our word for it. Hear from the professionals and companies who have transformed their careers and teams with our services.
+                                Do not just take our word for it. Hear from the professionals and companies who have transformed their careers and teams with our services.
                             </p>
                         </motion.div>
 
@@ -942,7 +942,7 @@ export default function Home() {
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                                 >
-                                    "
+                                    &quot;
                                 </motion.div>
 
                                 {/* Testimonial Content */}
@@ -1045,7 +1045,7 @@ export default function Home() {
                                 Worldwide
                             </p>
                             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                                Our track record speaks for itself. We've helped thousands of professionals and hundreds of companies achieve their goals.
+                                Our track record speaks for itself. We have helped thousands of professionals and hundreds of companies achieve their goals.
                             </p>
                         </motion.div>
 
@@ -1228,7 +1228,7 @@ export default function Home() {
                                         <input type="email" className="w-full px-4 py-3 border border-blue-950 rounded-lg focus:ring-2 focus:ring-blue-950 focus:border-transparent" />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-blue-950 mb-2">I'm interested in</label>
+                                        <label className="block text-sm font-medium text-blue-950 mb-2">I am interested in</label>
                                         <select className="w-full px-4 py-3 border border-blue-950 rounded-lg focus:ring-2 focus:ring-blue-950 focus:border-transparent">
                                             <option>Job Search Services</option>
                                             <option>Recruitment Solutions</option>
