@@ -1,26 +1,227 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --font-family-sans: 'Inter', sans-serif;
+  --font-family-script: 'Dancing Script', cursive;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-warm-50: #fef7f0;
+  --color-warm-100: #fcebe1;
+  --color-warm-200: #f7d3c3;
+  --color-warm-300: #f0b49e;
+  --color-warm-400: #e89578;
+  --color-warm-500: #e07654;
+  --color-warm-600: #d45f3b;
+  --color-warm-700: #b64b2c;
+  --color-warm-800: #924128;
+  --color-warm-900: #773827;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+
+  --color-rose-50: #fff1f2;
+  --color-rose-100: #ffe4e6;
+  --color-rose-200: #fecdd3;
+  --color-rose-300: #fda4af;
+  --color-rose-400: #fb7185;
+  --color-rose-500: #f43f5e;
+  --color-rose-600: #e11d48;
+  --color-rose-700: #be123c;
+  --color-rose-800: #9f1239;
+  --color-rose-900: #881337;
+
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-slide-up: slide-up 0.5s ease-out;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom Swiper Styles */
+.job-seekers-swiper .swiper-pagination {
+  bottom: 0 !important;
+}
+
+.job-seekers-swiper .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.job-seekers-swiper .swiper-pagination-bullet-active {
+  background: rgb(23 37 84) !important;
+  transform: scale(1.2);
+}
+
+.job-seekers-swiper .swiper-button-next,
+.job-seekers-swiper .swiper-button-prev {
+  color: rgb(23 37 84) !important;
+  background: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.job-seekers-swiper .swiper-button-next:hover,
+.job-seekers-swiper .swiper-button-prev:hover {
+  background: rgb(23 37 84);
+  color: white;
+  transform: scale(1.1);
+}
+
+.job-seekers-swiper .swiper-button-next::after,
+.job-seekers-swiper .swiper-button-prev::after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Card height consistency */
+.job-seekers-swiper .swiper-slide {
+  height: auto;
+  display: flex;
+}
+
+.job-seekers-swiper .swiper-slide>div {
+  height: 100%;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.job-seekers-swiper .swiper-slide .card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.job-seekers-swiper .swiper-slide .card-description {
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.job-seekers-swiper .swiper-slide .card-features {
+  margin-top: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+  .job-seekers-swiper .swiper-button-next,
+  .job-seekers-swiper .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+  }
+
+  .job-seekers-swiper .swiper-button-next::after,
+  .job-seekers-swiper .swiper-button-prev::after {
+    font-size: 14px;
+  }
+
+  .job-seekers-swiper .swiper-slide>div {
+    min-height: 380px;
+  }
+}
+
+@media (max-width: 640px) {
+
+  .job-seekers-swiper .swiper-button-next,
+  .job-seekers-swiper .swiper-button-prev {
+    display: none;
+  }
+
+  .job-seekers-swiper .swiper-slide>div {
+    min-height: 360px;
+  }
+}
+
+/* Swiper Card Height Consistency */
+.job-seekers-swiper .swiper-slide,
+.companies-swiper .swiper-slide {
+  height: auto;
+  min-height: 400px;
+}
+
+.job-seekers-swiper .swiper-slide>div,
+.companies-swiper .swiper-slide>div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-description {
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.card-features {
+  margin-top: auto;
+}
+
+/* Swiper Navigation Styling */
+.job-seekers-swiper .swiper-button-next,
+.job-seekers-swiper .swiper-button-prev,
+.companies-swiper .swiper-button-next,
+.companies-swiper .swiper-button-prev {
+  @apply text-blue-950 bg-white/90 backdrop-blur-sm rounded-full w-12 h-12 shadow-lg;
+}
+
+.job-seekers-swiper .swiper-button-next:after,
+.job-seekers-swiper .swiper-button-prev:after,
+.companies-swiper .swiper-button-next:after,
+.companies-swiper .swiper-button-prev:after {
+  @apply text-base font-bold;
+}
+
+.job-seekers-swiper .swiper-button-next:hover,
+.job-seekers-swiper .swiper-button-prev:hover,
+.companies-swiper .swiper-button-next:hover,
+.companies-swiper .swiper-button-prev:hover {
+  @apply bg-white text-blue-950;
+}
+
+.job-seekers-swiper .swiper-pagination-bullet,
+.companies-swiper .swiper-pagination-bullet {
+  @apply bg-blue-950;
+}
+
+.job-seekers-swiper .swiper-pagination-bullet-active,
+.companies-swiper .swiper-pagination-bullet-active {
+  @apply bg-blue-950;
 }
