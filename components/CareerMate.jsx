@@ -377,7 +377,7 @@ const CareerMate = () => {
             {/* Floating Chat Button */}
             <motion.button
                 onClick={() => setIsOpen(true)}
-                className={`fixed bottom-6 right-6 z-50 bg-blue-950 hover:bg-blue-900 text-white p-4 rounded-full shadow-lg transition-all duration-300 ${isOpen ? 'hidden' : 'flex'} items-center justify-center`}
+                className={`animate-bounce fixed bottom-6 right-6 z-50 bg-blue-950 hover:bg-blue-900 text-white p-4 rounded-full shadow-lg transition-all duration-300 ${isOpen ? 'hidden' : 'flex'} items-center justify-center`}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 20 }}
@@ -391,7 +391,7 @@ const CareerMate = () => {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        className="fixed bottom-6 right-6 z-50 w-96 h-[600px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden"
+                        className="fixed bottom-6 right-6 z-50 w-96 h-[600px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden "
                         initial={{ opacity: 0, scale: 0.8, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -400,24 +400,24 @@ const CareerMate = () => {
                         {/* Header */}
                         <div className="bg-blue-950 text-white p-4 flex items-center justify-between">
                             <div className="flex items-center space-x-3">
-                                <div className="w-10 h-10 bg-blue-800 rounded-full flex items-center justify-center">
-                                    <Bot className="h-6 w-6" />
+                                <div className="w-10 h-10 bg-blue-800 rounded-full flex items-center justify-center overflow-hidden">
+                                    <img src="/genies.jpg" alt="Genie Icon" className="h-8 w-8 rounded-full" />
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold">CareerMate</h3>
+                                    <h3 className="font-semibold">Genies</h3>
                                     <p className="text-sm text-blue-200">Your Career Assistant</p>
                                 </div>
                             </div>
-                            <div className="flex items-center space-x-2">
+                            <div className="flex items-center space-x-2 gap-5">
                                 <button
                                     onClick={resetChat}
-                                    className="text-blue-200 hover:text-white transition-colors text-sm"
+                                    className="text-blue-200 hover:text-white transition-colors text-sm flex items-center gap-1 cursor-pointer"
                                 >
                                     Reset
                                 </button>
                                 <button
                                     onClick={() => setIsOpen(false)}
-                                    className="text-blue-200 hover:text-white transition-colors"
+                                    className="text-blue-200 hover:text-white transition-colors cursor-pointer"
                                 >
                                     <X className="h-5 w-5" />
                                 </button>
@@ -529,7 +529,7 @@ const CareerMate = () => {
                                     onChange={(e) => setInputValue(e.target.value)}
                                     onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                                     placeholder="Type your message..."
-                                    className="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-950 focus:border-transparent text-sm"
+                                    className="flex-1 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-950 focus:border-transparent text-sm"
                                 />
                                 <motion.button
                                     onClick={handleSendMessage}

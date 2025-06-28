@@ -203,7 +203,8 @@ const ChatBot = () => {
                         <div className="bg-blue-950 text-white p-4 flex items-center justify-between">
                             <div className="flex items-center space-x-3">
                                 <div className="w-10 h-10 bg-blue-800 rounded-full flex items-center justify-center">
-                                    <Bot className="h-6 w-6" />
+                                    {/* <Bot className="h-6 w-6" /> */}
+                                    <img src="/genies.jpg" alt="Genie Icon" className="h-10 w-10" />
                                 </div>
                                 <div>
                                     <h3 className="font-semibold">CareerMate</h3>
