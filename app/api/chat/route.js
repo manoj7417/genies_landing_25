@@ -1,97 +1,188 @@
-import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
+import path from 'path';
+import { promises as fs } from 'fs';
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
+// Smart query matcher - maps user intents to JSON sections
+function getRelevantSections(query, data) {
+    const q = query.toLowerCase();
+
+    // Define query patterns and their corresponding JSON paths
+    const intentMap = {
+        // AI-related queries
+        'ai': ['core_services.ai_career_coach', 'key_differentiators.ai_integration', 'technology_and_innovation.ai_capabilities'],
+        'artificial intelligence': ['core_services.ai_career_coach', 'key_differentiators.ai_integration'],
+        'ai-powered': ['core_services.ai_career_coach', 'key_differentiators.ai_integration'],
+        'personalized career guidance': ['core_services.ai_career_coach'],
+        'career guidance': ['core_services.ai_career_coach', 'core_services.career_coaching_services'],
+
+        // CV/Resume related
+        'cv': ['core_services.genies_pro_cv_studio'],
+        'resume': ['core_services.genies_pro_cv_studio'],
+        'cv builder': ['core_services.genies_pro_cv_studio.tools.cv_creator'],
+        'cv optimizer': ['core_services.genies_pro_cv_studio.tools.cv_optimizer'],
+        'cv match': ['core_services.genies_pro_cv_studio.tools.cv_match'],
+        'ats': ['key_differentiators.ats_friendly_solutions'],
+
+        // Career coaching
+        'career coach': ['core_services.career_coaching_services'],
+        'coaching': ['core_services.career_coaching_services'],
+        'career transition': ['core_services.career_coaching_services'],
+        'career growth': ['core_services.career_coaching_services'],
+
+        // Job matching
+        'job matching': ['core_services.job_matching_and_career_discovery'],
+        'career discovery': ['core_services.job_matching_and_career_discovery'],
+        'job search': ['core_services.job_matching_and_career_discovery'],
+
+        // Testing
+        'psychometric': ['core_services.psychometric_testing'],
+        'personality test': ['core_services.psychometric_testing'],
+
+        // Company info
+        'company': ['company'],
+        'about': ['company'],
+        'contact': ['company.details', 'service_accessibility.contact_methods'],
+        'phone': ['company.details', 'service_accessibility.contact_methods'],
+        'hours': ['company.details', 'service_accessibility.operating_schedule'],
+
+        // Industries
+        'industry': ['industry_coverage'],
+        'domains': ['industry_coverage.domains']
+    };
+
+    // Find matching intents
+    let relevantPaths = [];
+    for (const [intent, paths] of Object.entries(intentMap)) {
+        if (q.includes(intent)) {
+            relevantPaths.push(...paths);
+        }
+    }
+
+    // If no specific intent found, do a broader search
+    if (relevantPaths.length === 0) {
+        const queryWords = q.split(' ').filter(word => word.length > 2);
+        for (const word of queryWords) {
+            for (const [intent, paths] of Object.entries(intentMap)) {
+                if (intent.includes(word) || word.includes(intent)) {
+                    relevantPaths.push(...paths);
+                }
+            }
+        }
+    }
+
+    return [...new Set(relevantPaths)]; // Remove duplicates
+}
+
+// Get data from JSON path
+function getDataByPath(data, path) {
+    const keys = path.split('.');
+    let current = data;
+    for (const key of keys) {
+        if (current && current[key]) {
+            current = current[key];
+        } else {
+            return null;
+        }
+    }
+    return current;
+}
+
+// Format response based on data structure
+function formatResponse(data, sectionName) {
+    let response = '';
+
+    // Format title
+    const title = sectionName.split('.').pop().replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+    if (data.description) {
+        response += `<b>${data.description}</b><br/><br/>`;
+    } else {
+        response += `<b>${title}</b><br/><br/>`;
+    }
+
+    if (data.features && Array.isArray(data.features)) {
+        response += '<ul>' + data.features.map(f => `<li>${f}</li>`).join('') + '</ul>';
+    } else if (data.tools) {
+        // Handle CV Studio tools
+        response += '<b>Available Tools:</b><br/>';
+        Object.entries(data.tools).forEach(([toolName, toolData]) => {
+            const formattedToolName = toolName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            response += `<br/><b>${formattedToolName}:</b><ul>`;
+            if (toolData.features) {
+                response += toolData.features.map(f => `<li>${f}</li>`).join('');
+            }
+            response += '</ul>';
+        });
+    } else if (Array.isArray(data)) {
+        response += '<ul>' + data.map(item => `<li>${item}</li>`).join('') + '</ul>';
+    } else if (typeof data === 'object') {
+        // Handle nested objects
+        Object.entries(data).forEach(([key, value]) => {
+            if (key !== 'description' && key !== 'features') {
+                const keyFormatted = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                if (typeof value === 'string') {
+                    response += `<b>${keyFormatted}:</b> ${value}<br/>`;
+                } else if (Array.isArray(value)) {
+                    response += `<b>${keyFormatted}:</b><ul>${value.map(v => `<li>${v}</li>`).join('')}</ul>`;
+                }
+            }
+        });
+    }
+
+    // Add specific buttons for certain services
+    if (sectionName.includes('career_coaching_services')) {
+        response += '<br/><a href="https://www.geniescareerhub.com/career-services" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#162556;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;margin-top:8px;">Get Career Coaching →</a>';
+    } else if (sectionName.includes('genies_pro_cv_studio')) {
+        response += '<br/><a href="https://www.geniescareerhub.com/cv-studio" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#162556;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;margin-top:8px;">Go to CV Studio →</a>';
+    } else if (sectionName.includes('job_matching') || sectionName.includes('career_discovery')) {
+        response += '<br/><a href="https://www.geniescareerhub.com/jobs" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#162556;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;margin-top:8px;">Browse Jobs →</a>';
+    } else if (sectionName.includes('ai_career_coach')) {
+        response += '<br/><a href="https://www.geniescareerhub.com/career-services" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#162556;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;margin-top:8px;">Try AI Career Coach →</a>';
+    } else if (sectionName.includes('psychometric_testing')) {
+        response += '<br/><a href="https://www.geniescareerhub.com/career-services" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#162556;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;margin-top:8px;">Take Psychometric Test →</a>';
+    }
+
+    return response;
+}
 
 export async function POST(request) {
     try {
-        const { message, userType, conversationHistory } = await request.json();
+        const { message } = await request.json();
+        const query = message.toLowerCase();
 
-        // Define system prompts based on user type
-        const systemPrompts = {
-            jobseeker: `You are Genies, a friendly career assistant helping job seekers.
+        console.log('User query:', query);
 
-Your approach:
-- Give simple, step-by-step advice
-- Be encouraging and supportive
-- Provide practical tips they can use right away
-- Ask follow-up questions to understand their situation better
-- Keep responses conversational and easy to understand
-- Break down complex topics into simple steps
-- Keep your responses concise: answer in 2-4 sentences so users do not need to scroll.
-- Only answer questions related to job search, resumes, interviews, career growth, networking, or skill development. If asked about anything else, politely say you can only help with these career-related topics.
-- **Never provide programming help, code, or explanations about programming languages. If asked, politely decline and state you only help with job search, resumes, interviews, career growth, networking, or skill development.**
+        // Fix the file path to use correct filename
+        const filePath = path.join(process.cwd(), 'app', 'data', 'genies_career_hub.json');
+        const fileData = await fs.readFile(filePath, 'utf-8');
+        const data = JSON.parse(fileData);
 
-Help with: job search, resumes, interviews, career growth, networking, and skill development.
+        // Get relevant sections based on smart matching
+        const relevantPaths = getRelevantSections(query, data);
+        console.log('Relevant paths found:', relevantPaths);
 
-Always end with a question or offer to help with the next step.`,
+        if (relevantPaths.length > 0) {
+            // Get the first relevant section
+            const sectionData = getDataByPath(data, relevantPaths[0]);
 
-            recruiter: `You are Genies, a helpful recruitment assistant for hiring managers and recruiters.
-
-Your approach:
-- Give clear, actionable advice
-- Provide step-by-step guidance
-- Be professional but approachable
-- Ask questions to understand their specific needs
-- Keep responses practical and implementable
-- Break down complex processes into simple steps
-- Keep your responses concise: answer in 2-4 sentences so users do not need to scroll.
-- Only answer questions related to recruitment, hiring, job descriptions, interview processes, hiring strategies, or team building. If asked about anything else, politely say you can only help with these recruitment and career topics.
-- **Never provide programming help, code, or explanations about programming languages. If asked, politely decline and state you only help with recruitment, hiring, job descriptions, interview processes, hiring strategies, or team building.**
-
-Help with: finding candidates, job descriptions, interview processes, hiring strategies, and team building.
-
-Always end with a question or offer to help with the next step.`
-        };
-
-        // Create conversation context
-        const messages = [
-            {
-                role: 'system',
-                content: systemPrompts[userType] || systemPrompts.jobseeker
+            if (sectionData) {
+                const response = formatResponse(sectionData, relevantPaths[0]);
+                console.log('Returning formatted response for:', relevantPaths[0]);
+                return NextResponse.json({ response });
             }
-        ];
-
-        // Add conversation history if provided
-        if (conversationHistory && conversationHistory.length > 0) {
-            conversationHistory.forEach(msg => {
-                messages.push({
-                    role: msg.sender === 'user' ? 'user' : 'assistant',
-                    content: msg.content
-                });
-            });
         }
 
-        // Add current message
-        messages.push({
-            role: 'user',
-            content: message
+        // If no relevant sections found, return out-of-scope message
+        console.log('No relevant sections found, returning out-of-scope message');
+        return NextResponse.json({
+            response: data.limitations_and_scope.beyond_scope_notice ||
+                "Kindly stick to career discussion only."
         });
-
-        const completion = await openai.chat.completions.create({
-            model: 'gpt-3.5-turbo',
-            messages: messages,
-            max_tokens: 200,
-            temperature: 0.7,
-        });
-
-        const response = completion.choices[0].message.content;
-
-        return NextResponse.json({ response });
 
     } catch (error) {
-        console.error('OpenAI API error:', error);
-
-        // Fallback response if OpenAI fails
-        const fallbackResponses = {
-            jobseeker: "I'm here to help with your job search! While I'm experiencing a temporary issue, I recommend focusing on networking, updating your LinkedIn profile, and tailoring your resume for each application. What specific area would you like to discuss?",
-            recruiter: "I'm here to assist with your recruitment needs! While I'm experiencing a temporary issue, I suggest focusing on creating clear job descriptions, utilizing multiple sourcing channels, and ensuring a positive candidate experience. What specific challenge can I help you with?"
-        };
-
+        console.error('Error in PDF-based chat API:', error);
         return NextResponse.json({
-            response: fallbackResponses[userType] || fallbackResponses.jobseeker
+            response: "Sorry, there was an error processing your request."
         });
     }
 } 

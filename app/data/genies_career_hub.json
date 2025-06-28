@@ -1,0 +1,306 @@
+{
+  "company": {
+    "name": "Genies Career Hub",
+    "overview": "An innovative career development platform launched in 2024 that seamlessly integrates artificial intelligence and technology with traditional career coaching methodologies",
+    "evolution": "Evolved from Career Genies, which was established in 2021 as part of The Career Genies Group",
+    "mission": "Super Charge Your Career Potential - Genies Career Hub has a passion to mentor individuals on their entire career path, helping them realize what they want to do, how to get into that career, and utilizing experts to guide them on how to excel within it",
+    "details": {
+      "head_office": "The Career Genies Group UK LTD, 124 City Road, London, EC1V 2NX",
+      "phone": "0203 476 7492",
+      "operating_hours": "Monday-Saturday 9am to 5pm",
+      "established": "2024 (evolved from Career Genies, founded in 2021)"
+    }
+  },
+  "core_services": {
+    "genies_pro_cv_studio": {
+      "description": "A comprehensive AI-driven suite of three pioneering tools for CV creation and optimization",
+      "tools": {
+        "cv_creator": {
+          "features": [
+            "Create professional CVs from scratch using AI technology",
+            "Choose from unlimited professional templates",
+            "Fill in personal details including name, job title, email, and professional information",
+            "AI-powered faster approach to CV building",
+            "Customized Curriculum Vitae templates aligned with professional profiles",
+            "ATS-friendly resume formats that pass Application Tracking System scanners"
+          ]
+        },
+        "cv_optimizer": {
+          "features": [
+            "AI-powered CV analysis and optimization",
+            "Enhanced CVs with keyword and format optimized content",
+            "Ensures ATS CV Checker approval",
+            "Professional insights integration for better performance",
+            "Eliminates CV rejections due to ATS incompatibility"
+          ]
+        },
+        "cv_match": {
+          "features": [
+            "Matches job titles or professions to prepare tailored CV templates",
+            "Provides profession-specific CV templates",
+            "Option to start fresh or use existing templates",
+            "Finds exact CVs tailored to individual profiles using AI",
+            "Customized profile analysis for better job matching"
+          ]
+        }
+      }
+    },
+    "career_coaching_services": {
+      "expert_career_coaches": {
+        "features": [
+          "Access to internationally acclaimed and accredited career coaches",
+          "Years of expertise working with candidates from different backgrounds",
+          "Understanding of global professional trends",
+          "Strategies proven to have high impact over time",
+          "Sophisticated career coaching questionnaires to understand individual requirements",
+          "Guidance that transcends location limitations to open worldwide opportunities"
+        ]
+      },
+      "24_7_expert_advice": {
+        "features": [
+          "Round-the-clock access to expert career advice",
+          "Personalized support for career growth and development",
+          "Available anytime to excel in chosen fields"
+        ]
+      },
+      "services_offered": [
+        "Career Transition Support",
+        "Career Growth Guidance",
+        "Personal Brand Development",
+        "Performance Enhancement",
+        "Skill Development",
+        "Job Search Strategies",
+        "Problem-Solving"
+      ]
+    },
+    "ai_career_coach": {
+      "features": [
+        "AI-powered personalized career guidance",
+        "Strategic career assistance powered by artificial intelligence",
+        "Time-efficient career support",
+        "Personalized recommendations based on individual profiles",
+        "Integration of AI technology with traditional coaching methodologies"
+      ]
+    },
+    "psychometric_testing": {
+      "features": [
+        "Professional personality assessment tools",
+        "Cognitive ability testing",
+        "Insights into professional strengths and preferences",
+        "Career path discovery based on personality and skills",
+        "Tests designed by leading psychometricians globally",
+        "Professional profile analysis for career clarity",
+        "Assessment of personality traits to find best career paths"
+      ]
+    },
+    "job_matching_and_career_discovery": {
+      "career_path_discovery": {
+        "service_name": "What Career is Best for You",
+        "features": [
+          "Discover career paths suited to personality and skills",
+          "Professional profile and skillset analysis",
+          "Customized career recommendations based on aspirations, skills, and values",
+          "Career alignment services"
+        ]
+      },
+      "job_matching": {
+        "features": [
+          "Expert job matching based on individual profiles",
+          "Analysis of career aspirations and skill sets",
+          "Matching with jobs that suit personal values",
+          "Challenging job search made easier through expert support"
+        ]
+      }
+    },
+    "industry_expert_interaction": {
+      "feature_name": "Real Life Experts Talk",
+      "features": [
+        "Interaction with industry leaders",
+        "Insights into professional success from experienced professionals",
+        "Access to industry knowledge and trends",
+        "Networking opportunities with professionals across various domains"
+      ]
+    },
+    "comprehensive_application_services": {
+      "features": [
+        "Complete job application support from CV creation to optimization",
+        "Professional application building for dream career roles",
+        "Best practices for presenting to potential employers",
+        "Application tracking and optimization services"
+      ]
+    }
+  },
+  "industry_coverage": {
+    "domains": [
+      "Healthcare",
+      "Technology",
+      "Management",
+      "Communications",
+      "Creative Industries",
+      "Sports",
+      "Information Technology",
+      "Psychology",
+      "Recruitment",
+      "Creative Writing"
+    ],
+    "professional_levels": [
+      "Students and new graduates",
+      "Mid-level professionals",
+      "Senior-level executives",
+      "Career changers",
+      "Professionals seeking skill development"
+    ]
+  },
+  "key_differentiators": {
+    "ats_friendly_solutions": {
+      "features": [
+        "Right ATS Resume Format templates",
+        "Templates compatible with ATS systems and CV checkers",
+        "Optimization for keyword and format requirements",
+        "Professional insights integrated into ATS-friendly resumes",
+        "Elimination of CV rejections due to ATS incompatibility"
+      ]
+    },
+    "ai_integration": {
+      "features": [
+        "Revolutionary AI-powered tools",
+        "Seamless integration of artificial intelligence with traditional methods",
+        "Advanced approach to career development",
+        "Personalized AI recommendations",
+        "Automated resume building capabilities"
+      ]
+    },
+    "global_reach": {
+      "features": [
+        "International career coaching expertise",
+        "Global professional trend awareness",
+        "Worldwide opportunity access",
+        "Support for diverse backgrounds and cultures",
+        "Cross-border career development guidance"
+      ]
+    },
+    "proven_track_record": {
+      "features": [
+        "Impressive results in career development and eLearning",
+        "High-impact strategies with proven effectiveness",
+        "Global trust built over years of service",
+        "Satisfied client base across various industries",
+        "Successful career placement history"
+      ]
+    }
+  },
+  "technology_and_innovation": {
+    "platform_features": [
+      "User-friendly interface",
+      "Seamless integration of multiple tools",
+      "Unified platform experience",
+      "Smooth and uninterrupted career development journey",
+      "Modern web-based accessibility"
+    ],
+    "ai_capabilities": [
+      "Intelligent CV creation and optimization",
+      "Personalized career recommendations",
+      "Automated job matching",
+      "Smart psychometric analysis",
+      "Advanced career guidance algorithms"
+    ]
+  },
+  "support_and_community": {
+    "customer_support": [
+      "Dedicated support team available",
+      "Personal consultation services",
+      "Educational problem-solving assistance",
+      "Comprehensive information and guidance"
+    ],
+    "community_building": [
+      "Career coach community network",
+      "Opportunities for career professionals to join",
+      "Collaborative approach to career development",
+      "Networking opportunities for career growth"
+    ],
+    "newsletter_and_updates": [
+      "Regular updates on career trends",
+      "Industry insights and tips",
+      "Latest platform features and improvements",
+      "Career development resources"
+    ]
+  },
+  "service_accessibility": {
+    "operating_schedule": {
+      "regular_hours": "Monday to Saturday: 9am to 5pm",
+      "ai_services": "24/7 AI-powered services available",
+      "platform_access": "Online platform accessibility",
+      "coaching_options": "Remote career coaching options"
+    },
+    "contact_methods": [
+      "Phone: 0203 476 7492",
+      "Online platform registration",
+      "Direct consultation booking",
+      "Email support (through website contact forms)"
+    ]
+  },
+  "target_audience": {
+    "primary_users": [
+      "Job seekers at all career levels",
+      "Students preparing for career entry",
+      "Professionals seeking career change",
+      "Individuals requiring CV improvement",
+      "People needing career direction guidance",
+      "Those seeking skill development opportunities"
+    ],
+    "secondary_users": [
+      "Career coaching professionals",
+      "Employers seeking recruitment support",
+      "Educational institutions",
+      "HR departments",
+      "Recruitment agencies"
+    ]
+  },
+  "unique_value_propositions": [
+    {
+      "title": "Comprehensive Career Solution",
+      "description": "One-stop platform for all career development needs"
+    },
+    {
+      "title": "AI-Powered Innovation",
+      "description": "Cutting-edge technology integration with traditional methods"
+    },
+    {
+      "title": "Global Expertise",
+      "description": "International career coaching with local understanding"
+    },
+    {
+      "title": "ATS Optimization",
+      "description": "Specialized focus on modern recruitment system compatibility"
+    },
+    {
+      "title": "Personalized Approach",
+      "description": "Tailored solutions based on individual profiles and goals"
+    },
+    {
+      "title": "Proven Results",
+      "description": "Track record of successful career placements and development"
+    },
+    {
+      "title": "24/7 Availability",
+      "description": "Round-the-clock access to career guidance and AI tools"
+    },
+    {
+      "title": "Multi-Domain Coverage",
+      "description": "Expertise across various industries and career paths"
+    }
+  ],
+  "limitations_and_scope": {
+    "specializations": [
+      "Career development and growth",
+      "CV/Resume creation and optimization",
+      "Career coaching and mentorship",
+      "Job matching and career discovery",
+      "Skill development guidance",
+      "Interview preparation and job application support",
+      "Career transition assistance",
+      "Professional brand development"
+    ],
+    "beyond_scope_notice": "For any queries or assistance beyond career growth, development, and job-related services, users should be informed that Genies Career Hub specializes specifically in career-related services and other topics may be outside their scope of expertise."
+  }
+}

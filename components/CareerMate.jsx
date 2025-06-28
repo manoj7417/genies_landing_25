@@ -40,7 +40,7 @@ const CareerMate = () => {
     useEffect(() => {
         if (isOpen && messages.length === 0) {
             setTimeout(() => {
-                addBotMessage("👋 Hello! I'm CareerMate, your career assistant.");
+                addBotMessage("👋 Hello! I'm Genies, your career assistant.");
                 setTimeout(() => {
                     addBotMessage("Are you looking for help as a **Job Seeker** or a **Recruiter**?", true);
                 }, 1000);
@@ -305,60 +305,45 @@ const CareerMate = () => {
             addUserMessage(userInput);
             setInputValue('');
 
-            // Special intent detection
-            const special = detectSpecialIntent(userInput);
-            if (special === 'resume-update') {
-                addBotMessageHTML(
-                    `You can update or build your resume instantly using our <b>Genies Career Hub Resume Builder</b>.<br />
-                    <a href="https://www.geniescareerhub.com/resume" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Update or Build Your Resume Now</a><br /><br />Is there anything else I can help you with?`
-                );
-                return;
-            }
-            if (special === 'ats') {
-                addBotMessageHTML(
-                    `You can check your resume's ATS score and get a detailed analysis using our <b>Genies Career Hub Resume Analyzer</b>.<br />
-                    <a href="https://www.geniescareerhub.com/resume-analyzer" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Analyze My Resume</a><br /><br />Is there anything else I can help you with?`
-                );
-                return;
-            }
-            if (special === 'job-search') {
-                addBotMessageHTML(
-                    `You can browse and apply for jobs on <b>Genies Career Hub</b>.<br />
-                    <a href="https://www.geniescareerhub.com/jobs" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Browse Jobs Now</a><br /><br />Let me know if you need help with your job search or applications!`
-                );
-                return;
-            }
-            if (special === 'recruiter-tools') {
-                addBotMessageHTML(
-                    `You can access recruiter tools, post jobs, and find candidates on <b>Genies Career Hub</b>.<br />
-                    <a href="https://www.geniescareerhub.com/recruiter/signin" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Access Recruiter Tools</a><br /><br />Let me know if you need help with your recruitment process!`
-                );
-                return;
+            // Check for special intents first
+            const specialIntent = detectSpecialIntent(userInput);
+            if (specialIntent) {
+                // Handle special intents with responses
+                if (specialIntent === 'resume-update') {
+                    addBotMessageHTML(
+                        `You can update or build your resume instantly using our <b>Genies Career Hub Resume Builder</b>.<br />
+                        <a href="https://www.geniescareerhub.com/cv-studio" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Update or Build Your Resume Now</a><br /><br />Is there anything else I can help you with?`
+                    );
+                    return;
+                }
+                if (specialIntent === 'ats') {
+                    addBotMessageHTML(
+                        `You can check your resume's ATS score and get a detailed analysis using our <b>Genies Career Hub Resume Analyzer</b>.<br />
+                        <a href="https://www.geniescareerhub.com/resume-analyzer" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Analyze My Resume</a><br /><br />Is there anything else I can help you with?`
+                    );
+                    return;
+                }
+                if (specialIntent === 'job-search') {
+                    addBotMessageHTML(
+                        `You can browse and apply for jobs on <b>Genies Career Hub</b>.<br />
+                        <a href="https://www.geniescareerhub.com/jobs" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Browse Jobs Now</a><br /><br />Let me know if you need help with your job search or applications!`
+                    );
+                    return;
+                }
+                if (specialIntent === 'recruiter-tools') {
+                    addBotMessageHTML(
+                        `You can access recruiter tools, post jobs, and find candidates on <b>Genies Career Hub</b>.<br />
+                        <a href="https://www.geniescareerhub.com/recruiter/signin" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Access Recruiter Tools</a><br /><br />Let me know if you need help with your recruitment process!`
+                    );
+                    return;
+                }
             }
 
-            // Get AI response for the user's message
+            // Get AI response for generic queries
             const aiResponse = await getAIResponse(userInput);
-            // Fallback: If AI response contains resume-update intent, show the link
-            if (detectSpecialIntent(aiResponse) === 'resume-update') {
-                addBotMessageHTML(
-                    `You can update or build your resume instantly using our <b>Genies Career Hub Resume Builder</b>.<br />
-                    <a href="https://www.geniescareerhub.com/resume" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Update or Build Your Resume Now</a><br /><br />Is there anything else I can help you with?`
-                );
-            } else if (detectSpecialIntent(aiResponse) === 'ats') {
-                addBotMessageHTML(
-                    `You can check your resume's ATS score and get a detailed analysis using our <b>Genies Career Hub Resume Analyzer</b>.<br />
-                    <a href="https://www.geniescareerhub.com/resume-analyzer" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Analyze My Resume</a><br /><br />Is there anything else I can help you with?`
-                );
-            } else if (detectSpecialIntent(aiResponse) === 'job-search') {
-                addBotMessageHTML(
-                    `You can browse and apply for jobs on <b>Genies Career Hub</b>.<br />
-                    <a href="https://www.geniescareerhub.com/jobs" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Browse Jobs Now</a><br /><br />Let me know if you need help with your job search or applications!`
-                );
-            } else if (detectSpecialIntent(aiResponse) === 'recruiter-tools') {
-                addBotMessageHTML(
-                    `You can access recruiter tools, post jobs, and find candidates on <b>Genies Career Hub</b>.<br />
-                    <a href="https://www.geniescareerhub.com/recruiter/signin" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Access Recruiter Tools</a><br /><br />Let me know if you need help with your recruitment process!`
-                );
+            // Check if the response contains HTML tags
+            if (typeof aiResponse === 'string' && (aiResponse.includes('<b>') || aiResponse.includes('<ul>') || aiResponse.includes('<li>') || aiResponse.includes('<br'))) {
+                addBotMessageHTML(aiResponse);
             } else {
                 addBotMessage(aiResponse);
             }
