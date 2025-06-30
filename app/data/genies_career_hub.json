@@ -45,6 +45,29 @@
         }
       }
     },
+    "internship_program": {
+      "description": "Comprehensive internship placement and discovery service to kickstart careers",
+      "service_name": "Kickstart Your Career with Internships",
+      "features": [
+        "Explore internship opportunities aligned with interests and skills",
+        "Gain real-world experience through structured internship placements",
+        "Build professional networks through internship connections",
+        "Access to internship opportunities across various industries",
+        "Career kickstart programs for students and new graduates",
+        "Skill-based internship matching",
+        "Professional development through hands-on experience",
+        "Bridge between academic learning and professional practice",
+        "Mentorship opportunities during internship placements",
+        "Industry exposure and practical skill development"
+      ],
+      "target_audience": [
+        "Students seeking practical experience",
+        "Recent graduates looking to enter the workforce",
+        "Career changers seeking industry exposure",
+        "Individuals looking to build professional networks",
+        "Those requiring hands-on skill development"
+      ]
+    },
     "career_coaching_services": {
       "expert_career_coaches": {
         "features": [
@@ -148,7 +171,8 @@
       "Mid-level professionals",
       "Senior-level executives",
       "Career changers",
-      "Professionals seeking skill development"
+      "Professionals seeking skill development",
+      "Internship seekers and early career professionals"
     ]
   },
   "key_differentiators": {
@@ -187,6 +211,14 @@
         "Satisfied client base across various industries",
         "Successful career placement history"
       ]
+    },
+    "comprehensive_career_support": {
+      "features": [
+        "End-to-end career support from internships to senior positions",
+        "Seamless transition from academic to professional environments",
+        "Continuous career development pathway",
+        "Integration of internship experiences with long-term career goals"
+      ]
     }
   },
   "technology_and_innovation": {
@@ -202,7 +234,8 @@
       "Personalized career recommendations",
       "Automated job matching",
       "Smart psychometric analysis",
-      "Advanced career guidance algorithms"
+      "Advanced career guidance algorithms",
+      "AI-powered internship matching"
     ]
   },
   "support_and_community": {
@@ -216,13 +249,15 @@
       "Career coach community network",
       "Opportunities for career professionals to join",
       "Collaborative approach to career development",
-      "Networking opportunities for career growth"
+      "Networking opportunities for career growth",
+      "Internship community and mentorship networks"
     ],
     "newsletter_and_updates": [
       "Regular updates on career trends",
       "Industry insights and tips",
       "Latest platform features and improvements",
-      "Career development resources"
+      "Career development resources",
+      "Internship opportunities and announcements"
     ]
   },
   "service_accessibility": {
@@ -246,20 +281,22 @@
       "Professionals seeking career change",
       "Individuals requiring CV improvement",
       "People needing career direction guidance",
-      "Those seeking skill development opportunities"
+      "Those seeking skill development opportunities",
+      "Internship seekers and early career starters"
     ],
     "secondary_users": [
       "Career coaching professionals",
       "Employers seeking recruitment support",
       "Educational institutions",
       "HR departments",
-      "Recruitment agencies"
+      "Recruitment agencies",
+      "Companies offering internship programs"
     ]
   },
   "unique_value_propositions": [
     {
       "title": "Comprehensive Career Solution",
-      "description": "One-stop platform for all career development needs"
+      "description": "One-stop platform for all career development needs from internships to senior positions"
     },
     {
       "title": "AI-Powered Innovation",
@@ -288,6 +325,10 @@
     {
       "title": "Multi-Domain Coverage",
       "description": "Expertise across various industries and career paths"
+    },
+    {
+      "title": "Complete Career Journey Support",
+      "description": "From internship placement to executive career development"
     }
   ],
   "limitations_and_scope": {
@@ -299,7 +340,8 @@
       "Skill development guidance",
       "Interview preparation and job application support",
       "Career transition assistance",
-      "Professional brand development"
+      "Professional brand development",
+      "Internship placement and career kickstart programs"
     ],
     "beyond_scope_notice": "For any queries or assistance beyond career growth, development, and job-related services, users should be informed that Genies Career Hub specializes specifically in career-related services and other topics may be outside their scope of expertise."
   }

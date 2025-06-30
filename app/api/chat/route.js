@@ -23,11 +23,20 @@ function getRelevantSections(query, data) {
         'cv match': ['core_services.genies_pro_cv_studio.tools.cv_match'],
         'ats': ['key_differentiators.ats_friendly_solutions'],
 
-        // Career coaching
+        // Career coaching and advice
         'career coach': ['core_services.career_coaching_services'],
         'coaching': ['core_services.career_coaching_services'],
         'career transition': ['core_services.career_coaching_services'],
         'career growth': ['core_services.career_coaching_services'],
+        'career advice': ['core_services.career_coaching_services'],
+        'get career advice': ['core_services.career_coaching_services'],
+        'can i get career advice': ['core_services.career_coaching_services'],
+        'need career advice': ['core_services.career_coaching_services'],
+        'want career advice': ['core_services.career_coaching_services'],
+        'looking for career advice': ['core_services.career_coaching_services'],
+        'career help': ['core_services.career_coaching_services'],
+        'can you help with career': ['core_services.career_coaching_services'],
+        'career support': ['core_services.career_coaching_services'],
 
         // Job matching
         'job matching': ['core_services.job_matching_and_career_discovery'],
@@ -47,7 +56,11 @@ function getRelevantSections(query, data) {
 
         // Industries
         'industry': ['industry_coverage'],
-        'domains': ['industry_coverage.domains']
+        'domains': ['industry_coverage.domains'],
+
+        // Internships (backup detection)
+        'internship': ['core_services.internship_program'],
+        'intern': ['core_services.internship_program']
     };
 
     // Find matching intents
@@ -130,7 +143,9 @@ function formatResponse(data, sectionName) {
     }
 
     // Add specific buttons for certain services
-    if (sectionName.includes('career_coaching_services')) {
+    if (sectionName.includes('internship_program')) {
+        response += '<br/><a href="https://www.geniescareerhub.com/internship" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#162556;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;margin-top:8px;">Browse Internships →</a>';
+    } else if (sectionName.includes('career_coaching_services')) {
         response += '<br/><a href="https://www.geniescareerhub.com/career-services" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#162556;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;margin-top:8px;">Get Career Coaching →</a>';
     } else if (sectionName.includes('genies_pro_cv_studio')) {
         response += '<br/><a href="https://www.geniescareerhub.com/cv-studio" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#162556;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;margin-top:8px;">Go to CV Studio →</a>';
@@ -156,6 +171,98 @@ export async function POST(request) {
         const filePath = path.join(process.cwd(), 'app', 'data', 'genies_career_hub.json');
         const fileData = await fs.readFile(filePath, 'utf-8');
         const data = JSON.parse(fileData);
+
+        // Check for specific career advice requests first
+        const careerAdvicePatterns = [
+            'can i get career advice',
+            'can i get career guidance',
+            'need career advice',
+            'want career advice',
+            'looking for career advice',
+            'get career advice',
+            'career advice',
+            'career help',
+            'can you help with career',
+            'career support'
+        ];
+
+        const isCareerAdviceRequest = careerAdvicePatterns.some(pattern => query.includes(pattern));
+
+        if (isCareerAdviceRequest) {
+            // Provide a direct response for career advice requests
+            const careerAdviceResponse = `
+                <b>Absolutely! I'd be happy to help you with career advice. 🚀</b><br/><br/>
+                
+                <b>Genies Career Hub</b> offers comprehensive career services to help you succeed:<br/><br/>
+                
+                <b>🎯 What we offer:</b>
+                <ul>
+                    <li><b>Expert Career Coaches:</b> Access to internationally acclaimed and accredited career coaches</li>
+                    <li><b>24/7 AI Career Coach:</b> Get personalized career guidance anytime</li>
+                    <li><b>Career Transition Support:</b> Guidance for changing career paths</li>
+                    <li><b>Skill Development:</b> Strategies for professional growth</li>
+                    <li><b>Personal Brand Development:</b> Build your professional presence</li>
+                    <li><b>Job Search Strategies:</b> Proven methods to find your ideal role</li>
+                </ul><br/>
+                
+                <b>✨ Our expert coaches have years of experience working with candidates from different backgrounds and understand global professional trends.</b><br/><br/>
+                
+                Ready to supercharge your career? Click below to get started with our career services:<br/>
+                <a href="https://www.geniescareerhub.com/career-services" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#162556;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;margin-top:8px;">Get Career Advice Now →</a>
+            `;
+
+            return NextResponse.json({ response: careerAdviceResponse });
+        }
+
+        // PRIORITY INTERNSHIP DETECTION - Check this FIRST before any other logic
+        const internshipPatterns = [
+            'internship',
+            'intern',
+            'get the internship',
+            'want internship',
+            'need internship',
+            'looking for internship',
+            'find internship',
+            'apply for internship',
+            'internship opportunities'
+        ];
+
+        const isInternshipRequest = internshipPatterns.some(pattern => query.includes(pattern));
+
+        console.log('=== INTERNSHIP DETECTION DEBUG ===');
+        console.log('Query received:', query);
+        console.log('Internship patterns checked:', internshipPatterns);
+        console.log('Is internship request:', isInternshipRequest);
+        console.log('================================');
+
+        if (isInternshipRequest) {
+            console.log('🎓 INTERNSHIP DETECTED! Returning internship response immediately...');
+
+            // Get internship program data from the updated JSON
+            const internshipData = data.core_services.internship_program;
+
+            const internshipResponse = `
+                <b>🎓 INTERNSHIP DETECTED! ${internshipData.service_name}</b><br/><br/>
+                
+                <b>${internshipData.description}</b><br/><br/>
+                
+                <b>🌟 What we offer:</b>
+                <ul>
+                    ${internshipData.features.slice(0, 6).map(feature => `<li>${feature}</li>`).join('')}
+                </ul><br/>
+                
+                <b>💼 Perfect for:</b>
+                <ul>
+                    ${internshipData.target_audience.map(audience => `<li>${audience}</li>`).join('')}
+                </ul><br/>
+                
+                <b>🚀 Ready to explore internship opportunities that align with your interests and skills?</b><br/><br/>
+                
+                <a href="https://www.geniescareerhub.com/internship" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#162556;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;margin-top:8px;">Browse Internships →</a>
+            `;
+
+            return NextResponse.json({ response: internshipResponse });
+        }
 
         // Get relevant sections based on smart matching
         const relevantPaths = getRelevantSections(query, data);

@@ -105,7 +105,7 @@ const CareerMate = () => {
             "How do I switch from marketing to tech?",
             "My resume isn't getting responses",
             "I'm nervous about salary negotiation",
-            "Should I take this job offer?",
+            "I'm looking for internship opportunities",
             "How to find entry-level positions?"
         ],
         recruiter: [
@@ -113,7 +113,7 @@ const CareerMate = () => {
             "How to attract passive candidates?",
             "Writing job descriptions for tech roles",
             "Screening candidates more effectively",
-            "Building our employer brand",
+            "Looking to offer internship programs",
             "Reducing time-to-hire process"
         ]
     };
@@ -170,11 +170,183 @@ const CareerMate = () => {
         ) {
             return 'recruiter-tools';
         }
+        // STRICT: First check if the message contains ANY career-related keywords
+        const careerKeywords = [
+            'career', 'job', 'jobs', 'resume', 'cv', 'interview', 'interviews', 'salary', 'wage', 'wages',
+            'workplace', 'professional', 'employment', 'employ', 'hired', 'hiring', 'recruit', 'recruitment',
+            'internship', 'intern', 'work', 'working', 'application', 'apply', 'applying', 'employer',
+            'employee', 'company', 'business', 'skill', 'skills', 'qualification', 'qualifications',
+            'experience', 'portfolio', 'networking', 'network', 'promotion', 'promoted', 'coaching',
+            'mentor', 'mentoring', 'leadership', 'management', 'manager', 'supervisor', 'position',
+            'role', 'roles', 'occupation', 'profession', 'industry', 'industries', 'freelance',
+            'contract', 'full-time', 'part-time', 'remote', 'office', 'team', 'colleague', 'colleagues',
+            'performance', 'productivity', 'development', 'growth', 'training', 'certification',
+            'linkedin', 'job search', 'job hunt', 'job hunting', 'job seeker', 'job seeking',
+            'cover letter', 'references', 'background check', 'onboarding', 'probation', 'resignation',
+            'termination', 'layoff', 'redundancy', 'promotion', 'raise', 'bonus', 'benefits',
+            'vacation', 'leave', 'sick leave', 'maternity', 'paternity', 'hr', 'human resources',
+            'payroll', 'tax', 'income', 'earnings', 'compensation', 'package', 'offer', 'negotiation',
+            'transition', 'change', 'switch', 'pivot', 'startup', 'corporate', 'entrepreneur',
+            'self-employed', 'consultant', 'consulting', 'agency', 'firm', 'organization',
+            'director', 'executive', 'ceo', 'cto', 'cfo', 'vp', 'vice president', 'president',
+            'senior', 'junior', 'entry level', 'mid-level', 'experienced', 'graduate', 'degree',
+            'education', 'university', 'college', 'school', 'course', 'training program',
+            'workshop', 'seminar', 'conference', 'meeting', 'presentation', 'project', 'deadline',
+            'client', 'customer', 'vendor', 'supplier', 'partner', 'stakeholder', 'board'
+        ];
+
+        const hasCareerKeywords = careerKeywords.some(keyword => lower.includes(keyword));
+
+        // VERY STRICT: If no career keywords found, it's out of scope
+        if (!hasCareerKeywords) {
+            // Additional check for obviously non-career questions
+            if (
+                lower.includes('write code') ||
+                lower.includes('write a code') ||
+                lower.includes('factorial') ||
+                lower.includes('fibonacci') ||
+                lower.includes('algorithm') ||
+                lower.includes('programming') ||
+                lower.includes('python') ||
+                lower.includes('javascript') ||
+                lower.includes('java') ||
+                lower.includes('c++') ||
+                lower.includes('html') ||
+                lower.includes('css') ||
+                lower.includes('sql') ||
+                lower.includes('database') ||
+                lower.includes('function') ||
+                lower.includes('variable') ||
+                lower.includes('array') ||
+                lower.includes('object') ||
+                lower.includes('class') ||
+                lower.includes('method') ||
+                lower.includes('loop') ||
+                lower.includes('condition') ||
+                lower.includes('math') ||
+                lower.includes('mathematics') ||
+                lower.includes('calculate') ||
+                lower.includes('formula') ||
+                lower.includes('equation') ||
+                lower.includes('physics') ||
+                lower.includes('chemistry') ||
+                lower.includes('biology') ||
+                lower.includes('science') ||
+                lower.includes('weather') ||
+                lower.includes('temperature') ||
+                lower.includes('climate') ||
+                lower.includes('time') ||
+                lower.includes('date') ||
+                lower.includes('calendar') ||
+                lower.includes('news') ||
+                lower.includes('politics') ||
+                lower.includes('government') ||
+                lower.includes('election') ||
+                lower.includes('vote') ||
+                lower.includes('stock') ||
+                lower.includes('crypto') ||
+                lower.includes('bitcoin') ||
+                lower.includes('investment') ||
+                lower.includes('finance') ||
+                lower.includes('money') ||
+                lower.includes('banking') ||
+                lower.includes('loan') ||
+                lower.includes('mortgage') ||
+                lower.includes('insurance') ||
+                lower.includes('cooking') ||
+                lower.includes('recipe') ||
+                lower.includes('food') ||
+                lower.includes('restaurant') ||
+                lower.includes('travel') ||
+                lower.includes('vacation') ||
+                lower.includes('holiday') ||
+                lower.includes('flight') ||
+                lower.includes('hotel') ||
+                lower.includes('booking') ||
+                lower.includes('movie') ||
+                lower.includes('film') ||
+                lower.includes('tv') ||
+                lower.includes('television') ||
+                lower.includes('music') ||
+                lower.includes('song') ||
+                lower.includes('book') ||
+                lower.includes('read') ||
+                lower.includes('health') ||
+                lower.includes('medical') ||
+                lower.includes('doctor') ||
+                lower.includes('medicine') ||
+                lower.includes('hospital') ||
+                lower.includes('legal') ||
+                lower.includes('law') ||
+                lower.includes('lawyer') ||
+                lower.includes('court') ||
+                lower.includes('sport') ||
+                lower.includes('game') ||
+                lower.includes('play') ||
+                lower.includes('shopping') ||
+                lower.includes('buy') ||
+                lower.includes('purchase') ||
+                lower.includes('sell') ||
+                lower.includes('product') ||
+                lower.includes('price') ||
+                lower.includes('cost') ||
+                lower.includes('animal') ||
+                lower.includes('pet') ||
+                lower.includes('dog') ||
+                lower.includes('cat') ||
+                lower.includes('car') ||
+                lower.includes('vehicle') ||
+                lower.includes('transport') ||
+                lower.includes('technology') ||
+                lower.includes('smartphone') ||
+                lower.includes('computer') ||
+                lower.includes('software') ||
+                lower.includes('hardware') ||
+                lower.includes('app') ||
+                lower.includes('website') ||
+                lower.includes('internet') ||
+                lower.includes('social media') ||
+                lower.includes('facebook') ||
+                lower.includes('instagram') ||
+                lower.includes('twitter') ||
+                lower.includes('youtube') ||
+                lower.includes('google') ||
+                lower.includes('apple') ||
+                lower.includes('microsoft') ||
+                lower.includes('amazon') ||
+                text.length < 3 || // Very short messages
+                lower.match(/^(hi|hello|hey|what|who|when|where|why|how)$/i) || // Single word questions
+                lower.match(/\b(what is|define|explain|tell me about|how to) (?!.*\b(career|job|resume|cv|interview|salary|workplace|professional|employment|hiring|recruitment|internship|work|skill|development|growth|training|coaching|mentor|leadership|management|networking|linkedin|application|employer|employee|company|business|position|role|occupation|profession|industry|freelance|contract|remote|team|performance|productivity|certification|promotion|raise|benefits|hr|compensation|transition|startup|corporate|consultant|director|executive|graduate|education|university|college|course|workshop|seminar|conference|client|customer|project)\b)/) ||
+                lower.match(/\bhow to (?!.*\b(get a job|find a job|find work|apply for|interview|build resume|write cv|network|career|professional|develop|grow|learn|improve|advance|transition|switch|negotiate|manage|lead|communicate|present|organize|plan|solve|achieve|succeed|excel|perform|deliver|complete|finish|start|begin|create|build|make|design|develop)\b)/)
+            ) {
+                return 'out-of-scope';
+            }
+
+            // If no career keywords and not obviously technical/non-career, still consider out of scope
+            return 'out-of-scope';
+        }
+        // Internship detection (check before job search)
+        if (
+            lower.includes('internship') ||
+            lower.includes('intern') ||
+            lower.includes('i want to get the internship') ||
+            lower.includes('looking for internship') ||
+            lower.includes('need internship') ||
+            lower.includes('find internship') ||
+            lower.includes('apply for internship') ||
+            lower.includes('summer internship') ||
+            lower.includes('paid internship') ||
+            lower.includes('unpaid internship') ||
+            lower.includes('internship opportunities') ||
+            lower.includes('internship program')
+        ) {
+            return 'internship';
+        }
         // Job search detection (stricter)
         if (
             lower.match(/\b(i want|find me|get me|looking for|search for|need|apply for) (a |an |the )?([a-z ]+ )?job\b/) ||
             lower.match(/\b([a-z ]+ )job\b/) && (lower.includes('find') || lower.includes('want') || lower.includes('looking for') || lower.includes('apply for')) ||
-            lower.match(/\b(software developer job|testing job|career coach job|marketing job|sales job|designer job|engineer job|manager job|analyst job|internship)\b/)
+            lower.match(/\b(software developer job|testing job|career coach job|marketing job|sales job|designer job|engineer job|manager job|analyst job)\b/)
         ) {
             return 'job-search';
         }
@@ -200,6 +372,12 @@ const CareerMate = () => {
 
         // Special intent detection
         const special = detectSpecialIntent(question);
+        if (special === 'out-of-scope') {
+            addBotMessage(
+                "I appreciate your question, but I specialize specifically in career-related services. I can only assist with:\n\n✅ Career growth and development\n✅ Job search and applications\n✅ Resume/CV building and optimization\n✅ Interview preparation\n✅ Internship opportunities\n✅ Professional skills and networking\n✅ Workplace guidance\n\nFor any queries beyond these career and job-related services, other topics are outside my scope of expertise.\n\nHow can I help you with your career journey today? 🚀"
+            );
+            return;
+        }
         if (special === 'resume-update') {
             addBotMessageHTML(
                 `You can update or build your resume instantly using our <b>Genies Career Hub Resume Builder</b>.<br />
@@ -228,11 +406,23 @@ const CareerMate = () => {
             );
             return;
         }
+        if (special === 'internship') {
+            addBotMessageHTML(
+                `🎓 <b>Kickstart Your Career with Internships!</b><br />
+                Explore internship opportunities that align with your interests and skills. Gain real-world experience and build your professional network through our comprehensive internship program.<br />
+                <a href="https://www.geniescareerhub.com/internship" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Browse Internships</a><br /><br />Need help with applications or want to know more about specific programs? I'm here to help!`
+            );
+            return;
+        }
 
         // Get AI response
         const aiResponse = await getAIResponse(question);
-        // Fallback: If AI response contains resume-update intent, show the link
-        if (detectSpecialIntent(aiResponse) === 'resume-update') {
+        // Fallback: If AI response contains specific intents, handle them
+        if (detectSpecialIntent(aiResponse) === 'out-of-scope') {
+            addBotMessage(
+                "I appreciate your question, but I specialize specifically in career-related services. I can only assist with:\n\n✅ Career growth and development\n✅ Job search and applications\n✅ Resume/CV building and optimization\n✅ Interview preparation\n✅ Internship opportunities\n✅ Professional skills and networking\n✅ Workplace guidance\n\nFor any queries beyond these career and job-related services, other topics are outside my scope of expertise.\n\nHow can I help you with your career journey today? 🚀"
+            );
+        } else if (detectSpecialIntent(aiResponse) === 'resume-update') {
             addBotMessageHTML(
                 `You can update or build your resume instantly using our <b>Genies Career Hub Resume Builder</b>.<br />
                 <a href="https://www.geniescareerhub.com/resume" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Update or Build Your Resume Now</a><br /><br />Is there anything else I can help you with?`
@@ -251,6 +441,12 @@ const CareerMate = () => {
             addBotMessageHTML(
                 `You can access recruiter tools, post jobs, and find candidates on <b>Genies Career Hub</b>.<br />
                 <a href="https://www.geniescareerhub.com/recruiter/signin" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Access Recruiter Tools</a><br /><br />Let me know if you need help with your recruitment process!`
+            );
+        } else if (detectSpecialIntent(aiResponse) === 'internship') {
+            addBotMessageHTML(
+                `🎓 <b>Kickstart Your Career with Internships!</b><br />
+                Explore internship opportunities that align with your interests and skills. Gain real-world experience and build your professional network through our comprehensive internship program.<br />
+                <a href="https://www.geniescareerhub.com/internship" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Browse Internships</a><br /><br />Need help with applications or want to know more about specific programs? I'm here to help!`
             );
         } else {
             addBotMessage(aiResponse);
@@ -309,6 +505,12 @@ const CareerMate = () => {
             const specialIntent = detectSpecialIntent(userInput);
             if (specialIntent) {
                 // Handle special intents with responses
+                if (specialIntent === 'out-of-scope') {
+                    addBotMessage(
+                        "I appreciate your question, but I specialize specifically in career-related services. I can only assist with:\n\n✅ Career growth and development\n✅ Job search and applications\n✅ Resume/CV building and optimization\n✅ Interview preparation\n✅ Internship opportunities\n✅ Professional skills and networking\n✅ Workplace guidance\n\nFor any queries beyond these career and job-related services, other topics are outside my scope of expertise.\n\nHow can I help you with your career journey today? 🚀"
+                    );
+                    return;
+                }
                 if (specialIntent === 'resume-update') {
                     addBotMessageHTML(
                         `You can update or build your resume instantly using our <b>Genies Career Hub Resume Builder</b>.<br />
@@ -334,6 +536,14 @@ const CareerMate = () => {
                     addBotMessageHTML(
                         `You can access recruiter tools, post jobs, and find candidates on <b>Genies Career Hub</b>.<br />
                         <a href="https://www.geniescareerhub.com/recruiter/signin" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Access Recruiter Tools</a><br /><br />Let me know if you need help with your recruitment process!`
+                    );
+                    return;
+                }
+                if (specialIntent === 'internship') {
+                    addBotMessageHTML(
+                        `🎓 <b>Kickstart Your Career with Internships!</b><br />
+                        Explore internship opportunities that align with your interests and skills. Gain real-world experience and build your professional network through our comprehensive internship program.<br />
+                        <a href="https://www.geniescareerhub.com/internship" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#172554;color:#fff;border-radius:8px;font-weight:600;text-decoration:none;">Browse Internships</a><br /><br />Need help with applications or want to know more about specific programs? I'm here to help!`
                     );
                     return;
                 }
@@ -424,9 +634,9 @@ const CareerMate = () => {
                                             : 'bg-gray-100 text-gray-900'
                                     }`}>
                                         {message.isHTML ? (
-                                            <div className="whitespace-pre-wrap text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: message.content }} />
+                                            <div className="text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: message.content }} />
                                         ) : (
-                                            <div className="whitespace-pre-wrap text-sm leading-relaxed">
+                                            <div className="text-sm leading-relaxed">
                                                 {message.content}
                                             </div>
                                         )}
