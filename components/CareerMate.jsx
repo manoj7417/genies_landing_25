@@ -166,7 +166,15 @@ const CareerMate = () => {
             lower.includes('recruiter login') ||
             lower.includes('recruiter sign in') ||
             lower.includes('recruiter signin') ||
-            lower.includes('recruiter tools')
+            lower.includes('recruiter tools') ||
+            lower.includes('i am a recruiter') ||
+            lower.includes("i'm a recruiter") ||
+            lower.includes('i am recruiter') ||
+            lower.includes("i'm recruiter") ||
+            lower.includes('i work as a recruiter') ||
+            lower.includes('i work as recruiter') ||
+            lower.includes('i am working as a recruiter') ||
+            lower.includes('i am working as recruiter')
         ) {
             return 'recruiter-tools';
         }
@@ -346,7 +354,17 @@ const CareerMate = () => {
         if (
             lower.match(/\b(i want|find me|get me|looking for|search for|need|apply for) (a |an |the )?([a-z ]+ )?job\b/) ||
             lower.match(/\b([a-z ]+ )job\b/) && (lower.includes('find') || lower.includes('want') || lower.includes('looking for') || lower.includes('apply for')) ||
-            lower.match(/\b(software developer job|testing job|career coach job|marketing job|sales job|designer job|engineer job|manager job|analyst job)\b/)
+            lower.match(/\b(software developer job|testing job|career coach job|marketing job|sales job|designer job|engineer job|manager job|analyst job)\b/) ||
+            lower.includes('i am a job seeker') ||
+            lower.includes("i'm a job seeker") ||
+            lower.includes('i am a jobseeker') ||
+            lower.includes("i'm a jobseeker") ||
+            lower.includes('i am job seeker') ||
+            lower.includes("i'm job seeker") ||
+            lower.includes('i am looking for a job') ||
+            lower.includes('i am searching for a job') ||
+            lower.includes('i need a job') ||
+            lower.includes('i want a job')
         ) {
             return 'job-search';
         }
